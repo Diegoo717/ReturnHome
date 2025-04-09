@@ -1,6 +1,5 @@
-package com.example.returnhome
+package com.example.returnhome.UiMap
 
-import android.content.Context
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner

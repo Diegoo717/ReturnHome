@@ -1,4 +1,4 @@
-package com.example.returnhome
+package com.example.returnhome.utils
 
 import android.content.Context
 import android.location.Geocoder

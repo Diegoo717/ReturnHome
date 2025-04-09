@@ -1,9 +1,13 @@
-package com.example.returnhome
+package com.example.returnhome.ViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.returnhome.util.LocationClient
+import com.example.returnhome.network.OpenRouteServiceApi
+import com.example.returnhome.model.UiState
+import com.example.returnhome.utils.geocodeAddress
+import com.example.returnhome.network.getRoute
+import com.example.returnhome.location.LocationClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

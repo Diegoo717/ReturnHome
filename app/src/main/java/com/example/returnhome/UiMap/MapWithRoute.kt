@@ -1,4 +1,4 @@
-package com.example.returnhome
+package com.example.returnhome.UiMap
 
 import android.graphics.Color
 import android.view.MotionEvent
@@ -25,7 +25,6 @@ fun MapWithRoute(
 ) {
     val context = LocalContext.current
 
-    // Configuración inicial de OSMdroid
     Configuration.getInstance().userAgentValue = context.packageName
 
     AndroidView(
@@ -37,15 +36,12 @@ fun MapWithRoute(
                 minZoomLevel = 3.0
                 maxZoomLevel = 19.0
 
-                // Configuración inicial del zoom
-                controller.setZoom(15.0) // Zoom inicial cercano
+                controller.setZoom(15.0)
             }
         },
         update = { mapView ->
-            // Limpiar overlays existentes
             mapView.overlays.clear()
 
-            // Configurar ubicación actual
             currentLocation?.let { location ->
                 Marker(mapView).apply {
                     position = location
@@ -56,7 +52,6 @@ fun MapWithRoute(
                 }
             }
 
-            // Configurar ubicación de casa
             homeLocation?.let { home ->
                 Marker(mapView).apply {
                     position = home
@@ -67,7 +62,6 @@ fun MapWithRoute(
                 }
             }
 
-            // Configurar ruta
             routePoints?.takeIf { it.size > 1 }?.let { points ->
                 Polyline(mapView).apply {
                     setPoints(points)
@@ -77,7 +71,6 @@ fun MapWithRoute(
                 }
             }
 
-            // Configurar clics en el mapa
             mapView.overlays.add(object : Overlay() {
                 override fun onSingleTapConfirmed(e: MotionEvent?, mapView: MapView?): Boolean {
                     e?.let {
@@ -91,11 +84,8 @@ fun MapWithRoute(
                 }
             })
 
-            // Centrar y ajustar el zoom del mapa
-            // Centrar y ajustar el zoom del mapa
             val pointsToShow = listOfNotNull(currentLocation, homeLocation)
             when {
-                // Si tenemos ambos puntos (ubicación y casa)
                 pointsToShow.size == 2 -> {
                     val boundingBox = BoundingBox(
                         pointsToShow.maxOf { it.latitude },
@@ -104,34 +94,29 @@ fun MapWithRoute(
                         pointsToShow.minOf { it.longitude }
                     )
                     mapView.post {
-                        // Usamos la versión con 3 parámetros:
-                        // boundingBox, animated, borderSizeInPixels
                         mapView.zoomToBoundingBox(boundingBox, false, 100)
 
-                        // Opcional: Ajustar un poco más el zoom si es necesario
                         mapView.controller.zoomIn()
                     }
                 }
 
-                // Si solo tenemos un punto
                 pointsToShow.isNotEmpty() -> {
                     mapView.post {
                         mapView.controller.setCenter(pointsToShow[0])
-                        mapView.controller.setZoom(17.0) // Zoom más cercano para un solo punto
+                        mapView.controller.setZoom(17.0)
                     }
                 }
 
-                // Si no tenemos puntos, centrar en ubicación por defecto
                 else -> {
                     mapView.post {
-                        mapView.controller.setCenter(GeoPoint(19.4326, -99.1332)) // Ejemplo: CDMX
-                        mapView.controller.setZoom(12.0) // Zoom medio
+                        mapView.controller.setCenter(GeoPoint(19.4326, -99.1332))
+                        mapView.controller.setZoom(12.0)
                     }
                 }
             
             }
 
-            mapView.invalidate() // Refrescar el mapa
+            mapView.invalidate()
         }
     )
 }

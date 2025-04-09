@@ -1,4 +1,4 @@
-package com.example.returnhome
+package com.example.returnhome.UiMap
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -29,7 +29,7 @@ fun HomeAddressDialog(
                 modifier = Modifier.padding(16.dp)
             ) {
                 Text(
-                    text = "Set Home Address",
+                    text = "Ingresa la direccion de tu casa",
                     style = MaterialTheme.typography.headlineSmall
                 )
 
@@ -38,7 +38,7 @@ fun HomeAddressDialog(
                 OutlinedTextField(
                     value = address,
                     onValueChange = { address = it },
-                    label = { Text("Home Address") },
+                    label = { Text("Direccion:") },
                     modifier = Modifier
                         .fillMaxWidth()
                         .focusRequester(focusRequester),

@@ -1,4 +1,4 @@
-package com.example.returnhome
+package com.example.returnhome.UiMap
 
 import android.Manifest
 import android.os.Bundle
@@ -20,10 +20,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.returnhome.network.RetrofitInstance
+import com.example.returnhome.ViewModel.RouteViewModel
+import com.example.returnhome.ViewModel.RouteViewModelFactory
 import com.example.returnhome.ui.theme.ReturnHomeTheme
-import com.example.returnhome.util.LocationClient
+import com.example.returnhome.location.LocationClient
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import org.osmdroid.config.Configuration

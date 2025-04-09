@@ -1,4 +1,4 @@
-package com.example.returnhome
+package com.example.returnhome.model
 
 import com.google.gson.annotations.SerializedName
 

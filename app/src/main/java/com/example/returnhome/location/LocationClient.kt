@@ -1,8 +1,7 @@
-package com.example.returnhome.util
+package com.example.returnhome.location
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
@@ -12,7 +11,6 @@ import com.google.android.gms.location.*
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.launch
 
 class LocationClient(private val context: Context) {
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)

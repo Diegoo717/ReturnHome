@@ -1,6 +1,6 @@
-package com.example.returnhome
+package com.example.returnhome.network
 
-import com.example.returnhome.*
+import com.example.returnhome.model.RouteResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,7 +13,6 @@ interface OpenRouteServiceApi {
     ): RouteResponse
 }
 
-// Helper extension function for cleaner calls
 suspend fun OpenRouteServiceApi.getRoute(
     startLon: Double,
     startLat: Double,

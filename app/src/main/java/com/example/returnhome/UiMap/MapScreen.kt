@@ -1,4 +1,4 @@
-package com.example.returnhome
+package com.example.returnhome.UiMap
 
 import android.Manifest
 import android.widget.Toast
@@ -12,6 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.example.returnhome.location.LocationPermissionRequest
+import com.example.returnhome.ViewModel.RouteViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import org.osmdroid.util.GeoPoint
@@ -29,7 +31,6 @@ fun MapScreen(
         )
     )
 
-    // Muestra un error si no hay permisos
     if (!permissionsState.allPermissionsGranted) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Button(
@@ -42,7 +43,6 @@ fun MapScreen(
         }
     }
 
-    // Muestra errores del ViewModel
     LaunchedEffect(Unit) {
         viewModel.uiState.collect { state ->
             state.errorMessage?.let { error ->
@@ -51,11 +51,9 @@ fun MapScreen(
         }
     }
 
-    // UI state from ViewModel
     val uiState by viewModel.uiState.collectAsState()
     val homeAddress by viewModel.homeAddress.collectAsState()
 
-    // Dialog states
     var showHomeAddressDialog by remember { mutableStateOf(false) }
     var showCurrentLocation by remember { mutableStateOf(false) }
 
